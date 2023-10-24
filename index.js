@@ -46,7 +46,7 @@ app.put("/api/notes/:id", (request, response, next) => {
 	const { content, important } = request.body;
 
 	Note.findByIdAndUpdate(
-		request.params.id, 
+		request.params.id,
 		{ content, important },
 		{ new: true, runValidators: true, context: "query" }
 	)
@@ -89,7 +89,7 @@ const errorHandler = (error, request, response, next) => {
 		return response.status(400).send({ error: "malformatted id" });
 	} else if (error.name === "ValidationError") {
 		return response.status(400).json({ error: error.message });
-	} 
+	}
 	next(error);
 };
 
